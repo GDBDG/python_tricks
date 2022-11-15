@@ -39,8 +39,8 @@ def imports_simple():
     le fichier qui importe
     """
 
-def imports_mixes():
-    print("Tests en imports mixes")
+def imports_mixes1():
+    print("Tests en imports mixes1")
     import file_to_import as fi
     from imports.file_to_import import change_state
     change_state()
@@ -52,7 +52,31 @@ def imports_mixes():
     print(f"Value TAB_CONST : {fi.TAB_CONST_1},  ID TAB_CONST : {id(fi.TAB_CONST_1)}")
     print(f"Value TAB_CONST : {fi.TAB_CONST_2},  ID TAB_CONST : {id(fi.TAB_CONST_2)}\n")
 
+def imports_partout():
+    print("imports dans tous les sens")
+    import file_to_import as fi
+    print("premier import")
+    print(f"Value INT_CONST : {fi.INT_CONST}, ID INT_CONST : {id(fi.INT_CONST)}")
+    print(f"Value INT_CONST2 : {fi.INT_CONST_2}, ID INT_CONST2 : {id(fi.INT_CONST_2)}\n")
+    from imports.file_to_import import change_state, print_state
+    print("deuxieme import")
+    print(f"Value INT_CONST : {fi.INT_CONST}, ID INT_CONST : {id(fi.INT_CONST)}")
+    print(f"Value INT_CONST2 : {fi.INT_CONST_2}, ID INT_CONST2 : {id(fi.INT_CONST_2)}\n")
+    import file_to_import as fi
+    # Cet import ne change rien, çà vaut la même chose qu'au premier, mais pas ce qui est dans le fichier
+    # a cet instant
+    print("troisième import")
+    print(f"Value INT_CONST : {fi.INT_CONST}, ID INT_CONST : {id(fi.INT_CONST)}")
+    print(f"Value INT_CONST2 : {fi.INT_CONST_2}, ID INT_CONST2 : {id(fi.INT_CONST_2)}\n")
+    print_state()
+    change_state()
+    print("Etat des valeur importées après modif")
+    print(f"Value INT_CONST : {fi.INT_CONST}, ID INT_CONST : {id(fi.INT_CONST)}")
+    print(f"Value INT_CONST2 : {fi.INT_CONST_2}, ID INT_CONST2 : {id(fi.INT_CONST_2)}\n")
+
+
 if __name__ == '__main__':
     # imports_from()
     # imports_simple()
-    imports_mixes()
+    # imports_mixes1()
+    imports_partout()
